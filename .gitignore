@@ -1,0 +1,30 @@
+# Claude Code
+CLAUDE.md
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.synctex(busy)
+
+# LaTeX intermediate files
+*.dvi
+*.ps
+
+# macOS
+.DS_Store
+*.swp
+
+# Backup files
+*~
+*.bak
+*.backup
+
+# Zip archives (keep source files only)
+*.zip
