@@ -87,7 +87,7 @@ Our work builds upon the foundational framework introduced by \citeasnoun{rameza
 \toprule
 \textbf{Aspect} & \textbf{Ramezani \& Xu (2023)} & \textbf{Our Work} \\
 \midrule
-Models evaluated & 5 models & 26 models across 6 families \\
+Models evaluated & 5 models & 20 models across 9 families \\
 Datasets & WVS only & WVS + PEW (cross-validation) \\
 Analysis type & Binary knowledge assessment & Correlation + clustering + error analysis \\
 Instruction-tuned models & Not evaluated & GPT-4o, Gemma-2, Falcon-40B-Inst \\
@@ -99,7 +99,7 @@ Regional analysis & Limited & W.E.I.R.D. vs. non-W.E.I.R.D. breakdown \\
 
 Research on AI ethics underscores the need for models that respect cultural distinctions and support equitable treatment \cite{Zowghi2023,cachat2023diversity,Karpouzis2024,Meijer2024}. Yet, biases in training data or architectural choices can lead to inconsistent handling of inputs from various backgrounds, raising doubts about an AI system's fairness and applicability \cite{Karpouzis2024}. While studies like \citeasnoun{arora2023probing} and \citeasnoun{Benkler2023} find that LLMs often struggle to accurately reflect diverse moral perspectives, others such as \citeasnoun{ramezani2023knowledge} indicate that LLMs can sometimes capture considerable cultural variety. Similarly, \citeasnoun{cao2023assessing} showed that ChatGPT aligns strongly with American cultural norms while adapting less effectively to others, reinforcing concerns of Western-centric bias in LLM outputs.
 
-Having established this theoretical landscape and identified key gaps in prior work, we now describe our methodology for systematically evaluating cultural moral alignment across 26 models and 63 countries.
+Having established this theoretical landscape and identified key gaps in prior work, we now describe our methodology for systematically evaluating cultural moral alignment across 20 models and 63 countries.
 
 \section{Materials and Methods}
 
@@ -139,7 +139,7 @@ From the PEW dataset, we extracted the questions corresponding to eight moral to
 Our evaluation of LLMs involves generating moral judgment scores from the models and comparing them with the two survey datasets. We first outline the LLMs selected for testing, then describe how we prompted the models to obtain moral scores for each country and topic. Finally, we detail three evaluation methods: \emph{correlation analysis}, \emph{cluster alignment analysis}, and \emph{model error analysis}.
 
 \paragraph{Model Selection.}
-We evaluated a broad range of transformer-based, decoder-only language models for their capacity to reflect cross-cultural moral judgments in the WVS and PEW data. Our set included the GPT-2 family (GPT2-B, GPT2-M, GPT2-L) \cite{Radford2019} for its coherent text generation at modest scales, as well as OPT-125 and OPT-350 \cite{Zhang2022} to examine mid-sized behavior on ethically sensitive content. For multilingual coverage, we tested BloomZ \cite{Muennighoff2023}, Qwen-0.5B, and Qwen-72B \cite{Bai2023}, aiming to see whether broader linguistic training influences moral alignment. We then studied whether larger parameter sizes or instruction tuning could improve consistency by including Gemma-2-9B-IT \cite{Mesnard2024}, Llama-3-8B, Llama-3.3-70B-Instruct \cite{Touvron2023a}, and Llama-2-70B \cite{Touvron2023b}. Additional instruction-tuned models, such as DBRX-Inst \cite{Conover2023a}, MPT-30B \cite{MosaicML2023}, Falcon3-7B, Falcon-40B-Inst \cite{Almazrouei2023}, GPT-NeoX-20B \cite{Black2022}, T5-Large \cite{raffel2020exploring}, and Dolly-v2-12B \cite{Conover2023b}, covered diverse training setups and parameter scales. We further compared Bloom \cite{LeScao2022} and BloomZ \cite{Muennighoff2023} to see how instruction-specific methods affect moral responses. Finally, we examined chat-focused or proprietary systems like GPT-3.5 \cite{brown2020language}, GPT-4o \cite{OpenAI2024b}, and GPT-4o-mini \cite{OpenAI2024a} to determine how interactive or closed-source models handle moral content. Importantly, none of these models received additional fine-tuning on moral or cultural data, meaning our findings show their unmodified views on ethical prompts.
+We evaluated a broad range of transformer-based, decoder-only language models for their capacity to reflect cross-cultural moral judgments in the WVS and PEW data. Our set included the GPT-2 family (GPT2-B, GPT2-M, GPT2-L) \cite{Radford2019} for its coherent text generation at modest scales, as well as OPT-125 and OPT-350 \cite{Zhang2022} to examine mid-sized behavior on ethically sensitive content. For multilingual coverage, we tested BLOOM \cite{LeScao2022}, BloomZ \cite{Muennighoff2023}, Qwen-0.5B, and Qwen-72B \cite{Bai2023}, aiming to see whether broader linguistic training influences moral alignment. We then studied whether larger parameter sizes or instruction tuning could improve consistency by including Gemma-2-9B-IT \cite{Mesnard2024}, Llama-3-8B, Llama-3.3-70B-Instruct \cite{Touvron2023a}, and Llama-2-70B \cite{Touvron2023b}. Additional models such as Falcon3-7B, Falcon-40B-Inst \cite{Almazrouei2023}, GPT-NeoX-20B \cite{Black2022}, and Dolly-v2-12B \cite{Conover2023b} covered diverse training setups and parameter scales. Finally, we examined chat-focused proprietary systems including GPT-3.5 \cite{brown2020language}, GPT-4o \cite{OpenAI2024b}, and GPT-4o-mini \cite{OpenAI2024a} to determine how interactive or closed-source models handle moral content. Importantly, none of these models received additional fine-tuning on moral or cultural data, meaning our findings show their unmodified views on ethical prompts.
 
 \paragraph{Prompt Structuring.}
 Following the template-based probing framework introduced by \citeasnoun{ramezani2023knowledge} for fine-grained moral-norm inference across cultures, we adapt and extend their basic method to probe a wider range of LLMs. To query the models about moral judgments, we designed prompts that mimic the structure of statements about morality in different countries. Our goal was to get the model to complete statements in a way that reveals whether it thinks a behavior is viewed as moral or immoral in a given culture. We used two main prompt templates for each country--topic pair:
@@ -200,7 +200,7 @@ We acknowledge that summary reports and analyses of the WVS and PEW surveys are 
 \paragraph{Cross-Country Correlations and Clustering.}
 We compare each model's cross-country correlations on a given topic to the survey-based scores. This correlation analysis shows whether a model senses that certain issues polarize particular cultures. In addition, we represent each country as a vector of moral justifiability scores and apply clustering metrics (e.g., Adjusted Rand Index or Adjusted Mutual Information) to see if a model's country clusters match survey-derived groupings.
 
-With this evaluation framework in place, we now present our empirical findings across the 26 models.
+With this evaluation framework in place, we now present our empirical findings across the 20 models.
 
 \section{Results}
 
@@ -316,7 +316,7 @@ Sub-Saharan Africa & 0.18 & 0.25 & Nigeria, Kenya, Ghana \\
 \end{tabularx}
 \end{table}
 
-The results confirm a substantial gap between W.E.I.R.D. and non-W.E.I.R.D. regions. Western European countries show the highest alignment (mean $r = 0.52$ for WVS, $0.61$ for PEW), while Sub-Saharan African countries show the lowest ($r = 0.18$ for WVS, $0.25$ for PEW). At the individual country level, Sweden and the Netherlands consistently rank among the highest-aligned nations, while Nigeria and Pakistan show the weakest alignment---a fourfold difference that underscores how LLM training data disproportionately represents Western perspectives.
+The results confirm a substantial gap between W.E.I.R.D. and non-W.E.I.R.D. regions. Western European countries show the highest alignment (mean $r = 0.52$ for WVS, $0.61$ for PEW), while Sub-Saharan African countries show the lowest ($r = 0.18$ for WVS, $0.25$ for PEW). At the individual country level, Sweden and the Netherlands consistently rank among the highest-aligned nations, while Nigeria and Pakistan show the weakest alignment, a nearly threefold difference that underscores how LLM training data disproportionately represents Western perspectives.
 
 Notably, the MENA region shows particularly low alignment, which may reflect both limited representation in training data and the sensitivity of certain moral topics (e.g., homosexuality, alcohol consumption) in these cultural contexts. East Asian countries fall in the middle range, possibly benefiting from the inclusion of Chinese language data in multilingual models like Qwen and Bloom.
 
