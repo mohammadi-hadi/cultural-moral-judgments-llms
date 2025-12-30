@@ -32,8 +32,6 @@
 \title{Exploring Cultural Variations in Moral Judgments with Large Language Models}
 
 \author{Hadi Mohammadi$^*$ \email{h.mohammadi@uu.nl}\\
-{\normalsize \bf Efthymia Papadopoulou}$^*$ \email{evi.papado98@gmail.com}\\
-{\normalsize \bf Yasmeen F.S.S. Meijer}$^*$ \email{mijntje.meijer@live.nl}\\
 {\normalsize \bf Ayoub Bagheri}$^*$ \email{a.bagheri@uu.nl}
 \AND \addr{$^*$Department of Methodology and Statistics, Utrecht University, Utrecht, The Netherlands}}
 
@@ -68,9 +66,9 @@ LLMs inherit biases embedded in their training data, and these biases can be amp
 
 Moral judgments---evaluations of actions, intentions, or individuals as acceptable or objectionable---differ widely by culture, shaped by religious traditions, social norms, and historical contexts \cite{Haidt2001,Shweder1997}. Understanding how pluralistic values are embedded in contemporary LLMs remains a pressing research concern. As noted by \citeasnoun{Graham2016}, W.E.I.R.D. societies emphasize individual rights and autonomy, while non-W.E.I.R.D. societies often stress communal responsibilities and spiritual considerations. Consequently, people in W.E.I.R.D. cultures may view personal choices like sexual behavior as an individual right, while those in non-W.E.I.R.D. cultures consider them a collective moral concern.
 
-Although many moral values overlap across cultures, there are also areas of genuine divergence, often referred to as \emph{moral value pluralism} \cite{Johnson2022,Benkler2023}. However, \citeasnoun{Kharchenko2024} argue that LLMs struggle to capture pluralistic moral values because their training data lacks sufficient cultural variety. Likewise, \citeasnoun{Du2024} point out that the heavy use of English data in LLMs training limits the representation and creativity of models in other languages, although larger training corpora and bigger model architectures can improve performance. \citeasnoun{arora2023probing} suggest that multilingual LLMs could learn cultural values by incorporating multilingual data in their training. Yet, the limited diversity within multilingual corpora can still cause these models to perform inconsistently across languages and cultural contexts. \citeasnoun{Benkler2023} emphasize that many current AI systems lean toward the dominant values of Western cultures, especially English-speaking ones, leading to an implicit assumption that W.E.I.R.D. values are universal.
+Although many moral values overlap across cultures, there are also areas of genuine divergence, often referred to as \emph{moral value pluralism} \cite{Johnson2022,Benkler2023}. However, \citeasnoun{Kharchenko2024} argue that LLMs struggle to capture pluralistic moral values because their training data lacks sufficient cultural variety. Likewise, \citeasnoun{Du2024} point out that the heavy use of English data in LLMs training limits the representation and creativity of models in other languages, although larger training corpora and bigger model architectures can improve performance. Recent work by \citeasnoun{agarwal2024ethical} demonstrates that ethical reasoning and moral value alignment in LLMs depend significantly on the language used in prompts, with models showing different moral positions when queried in different languages. \citeasnoun{arora2023probing} suggest that multilingual LLMs could learn cultural values by incorporating multilingual data in their training. Yet, the limited diversity within multilingual corpora can still cause these models to perform inconsistently across languages and cultural contexts. \citeasnoun{Benkler2023} emphasize that many current AI systems lean toward the dominant values of Western cultures, especially English-speaking ones, leading to an implicit assumption that W.E.I.R.D. values are universal.
 
-Recent work has explored alternative theoretical frameworks for analyzing moral alignment in LLMs. \citeasnoun{abdulhai2024moral} applied Moral Foundations Theory to examine how moral biases vary across different prompting contexts, while \citeasnoun{marraffini2024greatest} developed utilitarian dilemma-based benchmarks that complement survey-based approaches. \citeasnoun{liu2024moral} found that Chinese LLMs exhibit collectivist values compared to Western models' individualistic tendencies, demonstrating that model origin significantly influences moral outputs.
+Recent work has explored alternative theoretical frameworks for analyzing moral alignment in LLMs. \citeasnoun{abdulhai2024moral} applied Moral Foundations Theory to examine how moral biases vary across different prompting contexts, while \citeasnoun{marraffini2024greatest} developed utilitarian dilemma-based benchmarks that complement survey-based approaches. \citeasnoun{liu2024moral} found that Chinese LLMs exhibit collectivist values compared to Western models' individualistic tendencies, demonstrating that model origin significantly influences moral outputs. Most recently, \citeasnoun{zhao2024worldvaluesbench} introduced WorldValuesBench, a large-scale benchmark specifically designed to evaluate multi-cultural value awareness in LLMs using WVS data, providing systematic evaluation across diverse cultural contexts.
 
 During training, LLMs develop associations between concepts based on co-occurrence patterns in text. These learned associations can encode the same social biases found in the training data \cite{nemani2024gender,mohammadi2025explainability}. This association-based learning can produce biased outputs that influence the model's fairness and reliability. For instance, \citeasnoun{Johnson2022} showed that GPT-3 used the term \emph{Muslims} in violent contexts more often than \emph{Christians}, reinforcing damaging stereotypes. In all these cases, biased outputs can influence public perceptions and decisions, highlighting the importance of bias detection and mitigation \cite{Noble2018,Zou2018}.
 
@@ -80,7 +78,7 @@ Probing has emerged as a popular technique to examine what PLMs know and how the
 
 Our work builds upon the foundational framework introduced by \citeasnoun{ramezani2023knowledge}, who first systematically evaluated whether LLMs contain knowledge about moral norms across cultures using WVS data. We extend their approach in several important ways, as summarized in \tabref{tab:comparison}.
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \small
 \caption{Comparison of our work with \protect\citeasnoun{ramezani2023knowledge}.}
@@ -110,7 +108,7 @@ Having established this theoretical landscape and identified key gaps in prior w
 
 To evaluate cross-cultural moral attitudes, we use two datasets: WVS Wave 7 and the PEW Global Attitudes Survey 2013. \tabref{tab:dataset_stats} provides summary statistics for both datasets.
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \small
 \caption{Dataset summary statistics.}
@@ -202,9 +200,6 @@ We acknowledge that summary reports and analyses of the WVS and PEW surveys are 
 \paragraph{Cross-Country Correlations and Clustering.}
 We compare each model's cross-country correlations on a given topic to the survey-based scores. This correlation analysis shows whether a model senses that certain issues polarize particular cultures. In addition, we represent each country as a vector of moral justifiability scores and apply clustering metrics (e.g., Adjusted Rand Index or Adjusted Mutual Information) to see if a model's country clusters match survey-derived groupings.
 
-\paragraph{Comparative Prompts.}
-We explicitly ask the model to compare two countries' moral judgments on a given topic using a direct comparative prompt: ``Regarding the morality of \{topic\}, \{country X\} and \{country Y\} are similar.'' This tests whether the model recognizes that some pairs of countries hold similar moral views on certain topics.
-
 With this evaluation framework in place, we now present our empirical findings across the 26 models.
 
 \section{Results}
@@ -214,7 +209,7 @@ With this evaluation framework in place, we now present our empirical findings a
 \paragraph{Pearson Correlations.}
 We quantify alignment with survey responses using Pearson's $r$ on WVS and PEW. \tabref{tab:AllCorrelationsStars} summarizes results across families and scales. Proprietary and instruction-tuned models (e.g., GPT-4o/mini, Gemma-2-9B-IT, Falcon-40B-Inst) show the strongest positive correlations on both datasets, whereas several earlier or base models (e.g., Qwen-0.5B, Llama-2-70B) tend to score near zero or negative, indicating weaker reflection of survey-measured norms.
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \small
 \caption{Correlation with survey scores. Pearson $r$ between model predictions and WVS/PEW. Higher is better; significance: * $p<.05$, ** $p<.01$, *** $p<.001$. Bold indicates $r \geq 0.4$.}
@@ -260,7 +255,7 @@ For each country $i$, with model vector $\mathbf{m}_i$ (topics) and survey vecto
 \paragraph{Pairwise Model Similarity.}
 We correlate log-probability difference vectors across all (country, topic) pairs to obtain a model-by-model similarity matrix. Families cluster as expected (e.g., GPT2-B/M/L together), while instruction-tuned or very large models often diverge, reflecting distinct stance patterns; see \figref{fig:pairwise}.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \begin{minipage}[t]{0.49\textwidth}
 \centering
@@ -279,7 +274,7 @@ We correlate log-probability difference vectors across all (country, topic) pair
 
 We created hierarchical clustering trees using the pairwise correlations (distance $d(X,Y) = 1 - \rho_{X,Y}$). The dendrograms in \figref{fig:hier} show that families cluster as expected (e.g., GPT2-* together), while instruction-tuned or very large models (e.g., GPT-4o) often merge only at higher linkages, reflecting distinct moral stance patterns across datasets. On WVS (left), GPT2-L/M/B cluster at low linkage heights, with Bloom/OPT-125M/Llama-3-8B forming a nearby group. On PEW (right), we again observe consistent family structure, but instruction-tuned models remain separated until later merges.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\linewidth]{figures/hier_dendrogram_WVS.pdf}
@@ -287,7 +282,7 @@ We created hierarchical clustering trees using the pairwise correlations (distan
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\linewidth]{figures/hier_dendrogram_PEW.pdf}
 \end{minipage}
-\caption{Hierarchical clustering dendrograms based on model-wise distances for WVS (left) and PEW (right). Note: The WVS dendrogram shows both ``Llama-3.3-70B-Inst'' and ``llama70b'' which represent the same model under different naming conventions in our analysis pipeline.}
+\caption{Hierarchical clustering dendrograms based on model-wise distances for WVS (left) and PEW (right).}
 \label{fig:hier}
 \end{figure}
 
@@ -296,7 +291,7 @@ We created hierarchical clustering trees using the pairwise correlations (distan
 
 A key concern raised in prior work is whether LLMs exhibit stronger alignment with W.E.I.R.D. nations than with other regions. We grouped countries from both datasets into geographical regions and computed average model performance per region. \tabref{tab:regional} presents these results.
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \small
 \caption{Regional performance analysis. Mean Pearson $r$ (across top-5 performing models) by region. Higher values indicate better alignment with survey data.}
@@ -331,7 +326,7 @@ Notably, the MENA region shows particularly low alignment, which may reflect bot
 \paragraph{Absolute Error.}
 To assess each model's deviation from human survey responses, we calculated $|\text{survey\_score} - \text{model\_prediction}|$ for each country--topic pair. \figref{fig:abs_error_dist} summarizes the distributions. Across WVS (left), many predictions fall within 0.2--0.6, with a tail beyond 1.0 on culturally sensitive topics. PEW (right) shows a similar pattern, with most errors in 0.2--1.0 and a smaller mass above 1.5--2.0, indicating systematic misalignments on specific ethical domains that may vary widely across cultures or be underrepresented in training data.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \begin{minipage}[t]{0.49\textwidth}
 \centering
@@ -346,71 +341,48 @@ To assess each model's deviation from human survey responses, we calculated $|\t
 \end{figure}
 
 \paragraph{Mean Absolute Error.}
-While correlation captures how well each model's normalized outputs align with survey responses, we also examine the Mean Absolute Error (MAE) per (model, topic) pair. This highlights which moral topics each model finds ``harder'' (higher error) or ``easier'' (lower error). \figref{fig:heatmap} displays a heatmap across models (columns) and topics (rows) with darker cells indicating higher error, and Tables~\ref{tab:EasiestTopics} and \ref{tab:HardestTopics} show the ten easiest and hardest topics, respectively.
+While correlation captures how well each model's normalized outputs align with survey responses, we also examine the Mean Absolute Error (MAE) per (model, topic) pair. This highlights which moral topics each model finds ``harder'' (higher error) or ``easier'' (lower error). \figref{fig:heatmap} displays a heatmap across models (columns) and topics (rows) with darker cells indicating higher error, and Table~\ref{tab:TopicDifficulty} shows the ten easiest and hardest topics side by side.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/mean_abs_error_heatmap.pdf}
 \caption{Mean absolute error by topic (rows) and model (columns). Darker cells indicate higher error. Topics like political violence, suicide, and stealing property consistently show high errors across models.}
 \label{fig:heatmap}
 \end{figure}
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \small
-\caption{Ten easiest topics (lowest mean absolute error across models).}
-\label{tab:EasiestTopics}
-\begin{tabularx}{\textwidth}{@{} c Y r r @{}}
+\caption{Ten easiest topics (left) and ten hardest topics (right) based on mean absolute error across models. Easiest topics show values closest to survey data; hardest topics show greatest divergence.}
+\label{tab:TopicDifficulty}
+\begin{tabular}{@{} c l r @{\hspace{1.5em}} c l r @{}}
 \toprule
-\# & Topic & Avg.\ Error & Std.\ Dev. \\
+\multicolumn{3}{c}{\textbf{Easiest Topics (Lowest Error)}} & \multicolumn{3}{c}{\textbf{Hardest Topics (Highest Error)}} \\
+\cmidrule(lr){1-3}\cmidrule(lr){4-6}
+\# & Topic & Error & \# & Topic & Error \\
 \midrule
-1 & Using contraceptives & 0.511 & 0.211 \\
-2 & Gambling & 0.491 & 0.163 \\
-3 & Drinking alcohol & 0.482 & 0.112 \\
-4 & Parents beating children & 0.462 & 0.262 \\
-5 & Getting a divorce & 0.431 & 0.082 \\
-6 & Having casual sex & 0.408 & 0.208 \\
-7 & Divorce & 0.391 & 0.072 \\
-8 & Claiming government benefits not entitled & 0.386 & 0.199 \\
-9 & Euthanasia & 0.384 & 0.079 \\
-10 & Death penalty & 0.363 & 0.147 \\
+1 & Using contraceptives & 0.511 & 1 & Political violence & 0.955 \\
+2 & Gambling & 0.491 & 2 & Suicide & 0.923 \\
+3 & Drinking alcohol & 0.482 & 3 & Stealing property & 0.839 \\
+4 & Parents beating children & 0.462 & 4 & Someone accepting a bribe & 0.800 \\
+5 & Getting a divorce & 0.431 & 5 & For a man to beat his wife & 0.782 \\
+6 & Having casual sex & 0.408 & 6 & Cheating on taxes & 0.717 \\
+7 & Divorce & 0.391 & 7 & Violence against other people & 0.709 \\
+8 & Claiming gov.\ benefits & 0.386 & 8 & Terrorism & 0.692 \\
+9 & Euthanasia & 0.384 & 9 & Homosexuality & 0.606 \\
+10 & Death penalty & 0.363 & 10 & Abortion & 0.599 \\
 \bottomrule
-\end{tabularx}
-\end{table}
-
-\begin{table}[t]
-\centering
-\small
-\caption{Ten hardest topics (highest mean absolute error across models).}
-\label{tab:HardestTopics}
-\begin{tabularx}{\textwidth}{@{} c Y r r @{}}
-\toprule
-\# & Topic & Avg.\ Error & Std.\ Dev. \\
-\midrule
-1 & Political violence & 0.955 & 0.365 \\
-2 & Suicide & 0.923 & 0.249 \\
-3 & Stealing property & 0.839 & 0.342 \\
-4 & Someone accepting a bribe & 0.800 & 0.374 \\
-5 & For a man to beat his wife & 0.782 & 0.288 \\
-6 & Cheating on taxes & 0.717 & 0.362 \\
-7 & Violence against other people & 0.709 & 0.332 \\
-8 & Terrorism (political/ideological) & 0.692 & 0.281 \\
-9 & Homosexuality & 0.606 & 0.167 \\
-10 & Abortion & 0.599 & 0.310 \\
-\bottomrule
-\end{tabularx}
+\end{tabular}
 \end{table}
 
 \paragraph{Illustrative Examples.}
 To make these patterns concrete, consider three representative cases. First, for \emph{homosexuality in Nigeria}, survey data indicates strong moral opposition (normalized score near $-0.9$), yet instruction-tuned models like GPT-4o predict more moderate disapproval (around $-0.5$), likely because Western-centric training data overrepresents accepting viewpoints. Second, for \emph{drinking alcohol in Sweden}, both survey responses and model predictions align closely (approximately $+0.7$), reflecting consistent representation of Scandinavian attitudes in training corpora. Third, for \emph{political violence in Egypt}, models predict near-universal condemnation ($-0.99$) while survey data reveals more nuanced positions ($-0.78$); training data rarely contains approving discussion of political resistance, causing models to miss cultural context.
 
-These results reveal a complex picture that merits careful interpretation.
-
 \section{Discussion}
 
-Our findings show considerable variation in how well language models replicate cross-cultural moral judgments, as captured in the WVS and PEW surveys. Larger or instruction-tuned models, such as Falcon-40B-Inst, Gemma-2-9B-IT, and GPT-4o, frequently demonstrate higher correlations with aggregated human survey responses. In contrast, some models, including Qwen-0.5B and Llama-2-70B, yield systematically negative correlations, suggesting that scale alone does not guarantee alignment with moral attitudes if the underlying training data or methodology is insufficiently diverse or biased.
+These results reveal a complex picture that merits careful interpretation. Our findings show considerable variation in how well language models replicate cross-cultural moral judgments, as captured in the WVS and PEW surveys. Larger or instruction-tuned models, such as Falcon-40B-Inst, Gemma-2-9B-IT, and GPT-4o, frequently demonstrate higher correlations with aggregated human survey responses. In contrast, some models, including Qwen-0.5B and Llama-2-70B, yield systematically negative correlations, suggesting that scale alone does not guarantee alignment with moral attitudes if the underlying training data or methodology is insufficiently diverse or biased.
 
-Topic-level analysis reveals that certain issues, such as political violence, terrorism, or wife-beating, consistently produce higher mean errors across different architectures. These discrepancies suggest that moral questions involving violence or extreme social norms may pose particular challenges for current language models, especially when training data do not include nuanced representations of such topics. Even models that perform relatively well on broad measures sometimes fail on region-specific or contentious issues. This trend aligns with evidence that LLMs handle clear-cut moral scenarios well but often display uncertainty or divergence on morally ambiguous dilemmas \cite{scherrer2023evaluating}.
+Topic-level analysis reveals that certain issues, such as political violence, terrorism, or wife-beating, consistently produce higher mean errors across different architectures. These discrepancies suggest that moral questions involving violence or extreme social norms may pose particular challenges for current language models, especially when training data do not include nuanced representations of such topics. Even models that perform relatively well on broad measures sometimes fail on region-specific or contentious issues. This trend aligns with evidence that LLMs handle clear-cut moral scenarios well but often display uncertainty or divergence on morally ambiguous dilemmas \cite{scherrer2023evaluating}. Recent work by \citeasnoun{liu2024intrinsic} examines whether LLMs possess intrinsic self-correction capabilities for moral reasoning, finding that such mechanisms are often superficial rather than genuinely reflecting moral understanding.
 
 We can offer a tentative explanation for why certain topics are harder than others. Topics like political violence, terrorism, and suicide are rarely discussed approvingly in published text, so models learn near-absolute condemnation and miss cultural nuances about resistance movements or end-of-life decisions. Wife-beating is universally condemned in formal text, yet cultural practices vary; models cannot bridge this gap between published norms and lived reality. In contrast, topics like divorce, alcohol consumption, and contraceptive use are widely discussed with clear cultural variation, allowing models to learn regional differences from their training data.
 
@@ -433,7 +405,7 @@ Although our methodology offers insights into cross-cultural moral alignment in 
 
 \section*{Acknowledgments}
 
-We thank the maintainers of the WVS and PEW data for enabling large-scale cross-cultural analysis. We also thank anonymous reviewers for their valuable comments and feedback. Computational resources were provided by SURF.
+We thank Efthymia Papadopoulou and Yasmeen F.S.S. Meijer for their contributions to the exploratory data analysis and earlier analysis. We thank the maintainers of the WVS and PEW data for enabling large-scale cross-cultural analysis. We also thank anonymous reviewers for their valuable comments and feedback. Computational resources were provided by SURF.
 
 \bibliographystyle{clin}
 \bibliography{references}
