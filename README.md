@@ -21,7 +21,7 @@
 
 **Title:** Exploring Cultural Variations in Moral Judgments with Large Language Models
 
-**Authors:** Hadi Mohammadi, Anastasia Giachanou, Ayoub Bagheri
+**Authors:** Hadi Mohammadi, Ayoub Bagheri
 
 **Affiliation:** Utrecht University, The Netherlands
 
