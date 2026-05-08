@@ -1,24 +1,64 @@
+<div align="center">
+
 # Exploring Cultural Variations in Moral Judgments with Large Language Models
 
-[![Paper](https://img.shields.io/badge/Paper-CLIN%202025-blue)](paper/main.pdf)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20090482.svg)](https://doi.org/10.5281/zenodo.20090482)
+[![arXiv](https://img.shields.io/badge/arXiv-2506.12433-b31b1b.svg)](https://arxiv.org/abs/2506.12433)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-This repository contains the code, data, and paper for "Exploring Cultural Variations in Moral Judgments with Large Language Models".
+*Probing 26 LLMs for cultural moral alignment with the World Values Survey and PEW Global Attitudes data.*
+
+</div>
+
+## Paper
+
+|                  |                                                                          |
+| ---------------- | ------------------------------------------------------------------------ |
+| **Title**        | Exploring Cultural Variations in Moral Judgments with Large Language Models |
+| **Authors**      | Hadi Mohammadi, Robert A. Bagheri |
+| **Affiliation**  | Utrecht University, The Netherlands |
+| **Venue**        | Computational Linguistics in the Netherlands Journal (in press) |
+| **arXiv**        | [2506.12433](https://arxiv.org/abs/2506.12433) |
+| **Code archive** | [10.5281/zenodo.20090482](https://doi.org/10.5281/zenodo.20090482) (this repository, snapshot v1.0-thesis) |
+
+> This repository accompanies **Chapter 6** of the PhD thesis
+> *Let Me Explain! Explainable NLP for Understanding Large Language Models* (Hadi Mohammadi, Utrecht University, 2026).
+
+## Abstract
+
+Large Language Models increasingly mediate decisions about content moderation, education, and search in culturally diverse contexts, yet their ability to capture moral pluralism is poorly understood. This work evaluates 26 models — from smaller systems (GPT-2, OPT, BLOOMZ, Qwen) to instruction-tuned LLMs (GPT-4o, Gemma, Falcon, Llama-3) — against the World Values Survey (55 countries) and the PEW Global Attitudes Survey (39 countries) across 19 ethical topics. Instruction-tuned models reach moderate alignment with survey data, but a persistent W.E.I.R.D. (Western, Educated, Industrialised, Rich, Democratic) bias remains: alignment with Western European and North American respondents is consistently stronger than with Sub-Saharan African or MENA respondents.
+
+## Citation
+
+If you use this code or data, please cite **both** the paper and this code archive:
+
+```bibtex
+@article{mohammadi2026cultural,
+  title         = {Exploring Cultural Variations in Moral Judgments with Large Language Models},
+  author        = {Mohammadi, Hadi and Bagheri, Robert A.},
+  year          = {2026},
+  journal       = {Computational Linguistics in the Netherlands Journal},
+  eprint        = {2506.12433},
+  archivePrefix = {arXiv},
+  url           = {https://arxiv.org/abs/2506.12433}
+}
+
+@software{mohammadi_cultural_moral_judgments_llms_2026,
+  author    = {Mohammadi, Hadi and Bagheri, Robert A.},
+  title     = {Exploring Cultural Variations in Moral Judgments with Large Language Models},
+  year      = {2026},
+  publisher = {Zenodo},
+  version   = {v1.0-thesis},
+  doi       = {10.5281/zenodo.20090482},
+  url       = {https://doi.org/10.5281/zenodo.20090482}
+}
+```
+
+---
 
 ## Key Insight
 
 When asked about the moral acceptability of divorce, an LLM might predict similar attitudes for Sweden and Saudi Arabia—yet survey data reveals nearly opposite positions. Such blind spots matter as LLMs increasingly power content moderation, search engines, and decision-support systems globally.
-
-## Abstract
-
-Large Language Models (LLMs) have gained prominence in both academic and public discussions, yet their ability to capture culturally diverse moral values remains unclear. In this paper, we examine whether LLMs can mirror variations in moral attitudes reported by two major cross-cultural surveys: the World Values Survey (55 countries) and the PEW Research Center's Global Attitudes Survey (39 countries).
-
-We evaluate 26 models spanning different scales and training approaches, from smaller models (GPT-2, OPT, BLOOMZ, Qwen) to instruction-tuned systems (GPT-4o, GPT-4o-mini, Gemma-2-9B-IT, Falcon-40B-Inst, Llama-3.3-70B-Instruct). Using log-probability-based moral justifiability scores, we correlate each model's outputs with survey data covering 19 ethical topics.
-
-Our results reveal:
-- **W.E.I.R.D. bias**: Models align best with Western European and North American perspectives, while Sub-Saharan African and MENA regions show the weakest alignment
-- **Topic-dependent performance**: Topics like divorce and alcohol show strong alignment; political violence and terrorism remain challenging
-- **Scale matters, but not alone**: Larger instruction-tuned models achieve higher correlations, but scale alone does not guarantee cultural alignment
 
 ## Key Findings
 
@@ -76,32 +116,27 @@ For practitioners deploying LLMs in global contexts:
 
 ```
 cultural-moral-judgments-llms/
-├── README.md                    # This file
-├── paper/                       # Paper and supplementary materials
-│   └── main.pdf                 # Full paper PDF
-├── requirements.txt             # Python dependencies
-├── LICENSE                      # MIT License
-├── data/                        # Survey data and processed datasets
-│   ├── raw/                     # Original survey data files
-│   └── processed/               # Processed data files
-├── src/                         # Source code
-│   ├── data_processing.py       # Data loading and preprocessing
-│   ├── model_evaluation.py      # Model evaluation functions
+├── README.md
+├── SETUP_GUIDE.md
+├── LICENSE
+├── CITATION.cff
+├── requirements.txt
+├── paper/
+│   └── main.pdf                 # Paper (preprint)
+├── src/
+│   ├── __init__.py
+│   ├── data_processing.py       # Survey data loading and preprocessing
+│   ├── model_evaluation.py      # Log-probability moral-justifiability scoring
 │   ├── visualization.py         # Plotting utilities
 │   └── utils.py                 # Helper functions
-├── notebooks/                   # Jupyter notebooks
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_model_evaluation.ipynb
-│   └── 03_results_analysis.ipynb
-├── scripts/                     # Standalone scripts
-│   ├── run_all_models.py        # Run evaluation on all models
-│   └── generate_plots.py        # Generate all plots
-├── results/                     # Output files
-│   ├── model_outputs/           # Model prediction results
-│   └── figures/                 # Generated plots and figures
-└── docs/                        # Additional documentation
+├── scripts/
+│   ├── run_all_models.py        # Run evaluation on all configured models
+│   └── generate_plots.py        # Generate paper figures
+└── docs/
     └── methodology.md           # Detailed methodology
 ```
+
+> **Note:** Survey data (WVS Wave 7, PEW Global Attitudes 2013) is not redistributed in this repo. Obtain it directly from the official sources listed under [Data](#data) below and supply your own paths to the scripts.
 
 ## Installation
 
@@ -162,25 +197,14 @@ For proprietary models (GPT-4o), we use direct numerical elicitation since log p
 
 See [docs/methodology.md](docs/methodology.md) for full details.
 
-## Citation
-
-```bibtex
-@article{mohammadi2025cultural,
-  title={Exploring Cultural Variations in Moral Judgments with Large Language Models},
-  author={Mohammadi, Hadi and Giachanou, Anastasia and Oberski, Daniel L. and Bagheri, Ayoub},
-  journal={Computational Linguistics in the Netherlands Journal},
-  year={2025}
-}
-```
-
 ## License
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
 
 ## Contact
 
-- **Hadi Mohammadi** - [h.mohammadi@uu.nl](mailto:h.mohammadi@uu.nl)
-- Utrecht University, Netherlands
+- **Hadi Mohammadi** — Utrecht University
+- Website: [mohammadi.cv](https://mohammadi.cv)
 
 ## Acknowledgments
 

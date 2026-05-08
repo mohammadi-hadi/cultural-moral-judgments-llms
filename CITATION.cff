@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite both the paper and this software archive."
+title: "Exploring Cultural Variations in Moral Judgments with Large Language Models"
+type: software
+version: "v1.0-thesis"
+date-released: "2026-05-08"
+doi: "10.5281/zenodo.20090482"
+license: MIT
+repository-code: "https://github.com/mohammadi-hadi/cultural-moral-judgments-llms"
+authors:
+  - given-names: "Hadi"
+    family-names: "Mohammadi"
+    affiliation: "Utrecht University"
+  - given-names: "Robert A."
+    family-names: "Bagheri"
+    affiliation: "Utrecht University"
+keywords:
+  - "large language models"
+  - "moral alignment"
+  - "cultural variation"
+  - "World Values Survey"
+  - "PEW"
+  - "WEIRD bias"
+  - "evaluation"
+abstract: >-
+  Large Language Models increasingly mediate decisions about content
+  moderation, education, and search in culturally diverse contexts, yet
+  their ability to capture moral pluralism is poorly understood. This work
+  evaluates 26 models — from smaller systems (GPT-2, OPT, BLOOMZ, Qwen) to
+  instruction-tuned LLMs (GPT-4o, Gemma, Falcon, Llama-3) — against the
+  World Values Survey (55 countries) and the PEW Global Attitudes Survey
+  (39 countries) across 19 ethical topics. Instruction-tuned models reach
+  moderate alignment with survey data, but a persistent W.E.I.R.D.
+  (Western, Educated, Industrialised, Rich, Democratic) bias remains:
+  alignment with Western European and North American respondents is
+  consistently stronger than with Sub-Saharan African or MENA respondents.
+preferred-citation:
+  type: article
+  title: "Exploring Cultural Variations in Moral Judgments with Large Language Models"
+  year: 2026
+  journal: "Computational Linguistics in the Netherlands Journal"
+  url: "https://arxiv.org/abs/2506.12433"
+  authors:
+    - given-names: "Hadi"
+      family-names: "Mohammadi"
+      affiliation: "Utrecht University"
+    - given-names: "Robert A."
+      family-names: "Bagheri"
+      affiliation: "Utrecht University"
