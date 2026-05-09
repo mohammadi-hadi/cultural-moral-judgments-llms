@@ -4,6 +4,10 @@ title: "Exploring Cultural Variations in Moral Judgments with Large Language Mod
 type: software
 version: "v1.0-thesis"
 date-released: "2026-05-09"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20091843
+    description: Zenodo archive of the v1.0-thesis snapshot
 license: MIT
 repository-code: "https://github.com/mohammadi-hadi/cultural-moral-judgments-llms"
 authors:
