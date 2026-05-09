@@ -1,0 +1,23 @@
+{
+  "title": "Exploring Cultural Variations in Moral Judgments with Large Language Models",
+  "description": "Code, model outputs, and analysis for evaluating 26 large language models against the World Values Survey (55 countries) and the PEW Global Attitudes Survey (39 countries) across 19 ethical topics, documenting a persistent W.E.I.R.D. (Western, Educated, Industrialised, Rich, Democratic) bias. Archived snapshot for the v1.0-thesis release accompanying the doctoral thesis Let Me Explain! Explainable NLP for Understanding Large Language Models (Utrecht University, 2026).",
+  "creators": [
+    {"name": "Mohammadi, Hadi", "orcid": "0000-0003-0860-9200", "affiliation": "Utrecht University"},
+    {"name": "Bagheri, Robert A.", "affiliation": "Utrecht University"}
+  ],
+  "license": "mit",
+  "upload_type": "software",
+  "version": "v1.0-thesis",
+  "keywords": [
+    "large language models",
+    "moral alignment",
+    "cultural variation",
+    "World Values Survey",
+    "PEW",
+    "WEIRD bias",
+    "evaluation"
+  ],
+  "related_identifiers": [
+    {"identifier": "https://arxiv.org/abs/2506.12433", "relation": "isSupplementTo", "scheme": "url"}
+  ]
+}
