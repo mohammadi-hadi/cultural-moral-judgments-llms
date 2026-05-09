@@ -122,21 +122,49 @@ cultural-moral-judgments-llms/
 ├── CITATION.cff
 ├── requirements.txt
 ├── paper/
-│   └── main.pdf                 # Paper (preprint)
+│   └── main.pdf                                  # Paper (preprint)
+├── notebooks/
+│   ├── Local_models.ipynb                        # Main analysis: log-prob scoring across 26 models
+│   ├── LLaMa_and_Gemma_code.ipynb                # LLaMA + Gemma evaluation
+│   └── All_models_llama_70B.ipynb                # LLaMA-70B evaluation pipeline
 ├── src/
 │   ├── __init__.py
-│   ├── data_processing.py       # Survey data loading and preprocessing
-│   ├── model_evaluation.py      # Log-probability moral-justifiability scoring
-│   ├── visualization.py         # Plotting utilities
-│   └── utils.py                 # Helper functions
+│   ├── data_processing.py                        # Survey data loading and preprocessing
+│   ├── model_evaluation.py                       # Log-probability moral-justifiability scoring
+│   ├── visualization.py                          # Plotting utilities
+│   └── utils.py                                  # Helper functions
 ├── scripts/
-│   ├── run_all_models.py        # Run evaluation on all configured models
-│   └── generate_plots.py        # Generate paper figures
+│   ├── run_all_models.py                         # Run evaluation on all configured models
+│   └── generate_plots.py                         # Generate paper figures
+├── data/
+│   ├── ethics_reference.md                       # Survey-data ethics statement
+│   ├── summary_correlations.csv                  # Per-model WVS/PEW correlations
+│   ├── summary_correlations.tex                  # Same, LaTeX-formatted table
+│   ├── df_LLaMa_PEW.csv                          # LLaMA log-probability outputs on PEW
+│   ├── results_per_model/                        # 18 per-model evaluation CSVs (9 models × WVS+PEW)
+│   │   └── results_<model>_{WVS,PEW}.csv
+│   └── sample_data/
+│       ├── Country_Codes_Names.csv               # ISO country code lookup
+│       ├── country_names.csv                     # Country-name normalisation
+│       └── WVS_Moral.csv                         # Derived WVS-Wave-7 moral subset (Q176–Q198)
+├── figures/
+│   ├── corr_vs_pval_scatter.png                  # Correlation vs p-value scatter
+│   ├── correlation_by_model_dataset.png          # Per-model correlation comparison
+│   └── paper/                                    # Camera-ready paper figures
+│       ├── country_heatmap_{WVS,PEW}.pdf
+│       ├── model_pairwise_correlation_{WVS,PEW}.pdf
+│       ├── hier_dendrogram_{WVS,PEW}.pdf
+│       ├── abs_error_dist_{WVS,PEW}.pdf
+│       ├── {WVS,PEW}_boxplot.pdf
+│       ├── mean_abs_error_heatmap.pdf
+│       └── score_distribution_country.pdf
 └── docs/
-    └── methodology.md           # Detailed methodology
+    └── methodology.md                            # Detailed methodology
 ```
 
-> **Note:** Survey data (WVS Wave 7, PEW Global Attitudes 2013) is not redistributed in this repo. Obtain it directly from the official sources listed under [Data](#data) below and supply your own paths to the scripts.
+> **Note on data:** Raw WVS Wave 7 and PEW Global Attitudes 2013 are not redistributed (license-restricted). Obtain them from the official sources listed under [Data](#data) below. The `data/sample_data/WVS_Moral.csv` is a derived subset of moral-justifiability items (Q176–Q198) used for the analysis; please cite WVS Wave 7 if reusing.
+
+> **Note on secrets:** API tokens in the notebooks are placeholders (`hf_REDACTED_SET_VIA_ENV_VAR`). Set your own via `os.environ["HF_TOKEN"]` before running.
 
 ## Installation
 
