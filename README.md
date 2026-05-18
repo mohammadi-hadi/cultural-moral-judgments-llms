@@ -2,7 +2,7 @@
 
 # Exploring Cultural Variations in Moral Judgments with Large Language Models
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20090482.svg)](https://doi.org/10.5281/zenodo.20090482)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20091842.svg)](https://doi.org/10.5281/zenodo.20091842)
 [![arXiv](https://img.shields.io/badge/arXiv-2506.12433-b31b1b.svg)](https://arxiv.org/abs/2506.12433)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -19,7 +19,7 @@
 | **Affiliation**  | Utrecht University, The Netherlands |
 | **Venue**        | Computational Linguistics in the Netherlands Journal (in press) |
 | **arXiv**        | [2506.12433](https://arxiv.org/abs/2506.12433) |
-| **Code archive** | [10.5281/zenodo.20090482](https://doi.org/10.5281/zenodo.20090482) (this repository, snapshot v1.0-thesis) |
+| **Code archive** | [10.5281/zenodo.20091842](https://doi.org/10.5281/zenodo.20091842) (this repository, snapshot v1.0-thesis) |
 
 > This repository accompanies **Chapter 6** of the PhD thesis
 > *Let Me Explain! Explainable NLP for Understanding Large Language Models* (Hadi Mohammadi, Utrecht University, 2026).
@@ -49,8 +49,8 @@ If you use this code or data, please cite **both** the paper and this code archi
   year      = {2026},
   publisher = {Zenodo},
   version   = {v1.0-thesis},
-  doi       = {10.5281/zenodo.20090482},
-  url       = {https://doi.org/10.5281/zenodo.20090482}
+  doi       = {10.5281/zenodo.20091842},
+  url       = {https://doi.org/10.5281/zenodo.20091842}
 }
 ```
 
