@@ -121,8 +121,6 @@ cultural-moral-judgments-llms/
 ├── LICENSE
 ├── CITATION.cff
 ├── requirements.txt
-├── paper/
-│   └── main.pdf                                  # Paper (preprint)
 ├── notebooks/
 │   ├── Local_models.ipynb                        # Main analysis: log-prob scoring across 26 models
 │   ├── LLaMa_and_Gemma_code.ipynb                # LLaMA + Gemma evaluation
