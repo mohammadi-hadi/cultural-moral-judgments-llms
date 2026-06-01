@@ -162,7 +162,7 @@ cultural-moral-judgments-llms/
 
 > **Note on data:** Raw WVS Wave 7 and PEW Global Attitudes 2013 are not redistributed (license-restricted). Obtain them from the official sources listed under [Data](#data) below. The `data/sample_data/WVS_Moral.csv` is a derived subset of moral-justifiability items (Q176–Q198) used for the analysis; please cite WVS Wave 7 if reusing.
 
-> **Note on secrets:** API tokens in the notebooks are placeholders (`hf_REDACTED_SET_VIA_ENV_VAR`). Set your own via `os.environ["HF_TOKEN"]` before running.
+> **Note on secrets:** API tokens in the notebooks are redacted (`hf_REDACTED_SET_VIA_ENV_VAR`). Set your own via `os.environ["HF_TOKEN"]` before running.
 
 ## Installation
 
