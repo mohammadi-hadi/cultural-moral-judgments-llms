@@ -56,14 +56,30 @@ If you use this code or data, please cite **both** the paper and this code archi
 
 ---
 
-## Key Insight
+## Overview
 
-When asked about the moral acceptability of divorce, an LLM might predict similar attitudes for Sweden and Saudi Arabia—yet survey data reveals nearly opposite positions. Such blind spots matter as LLMs increasingly power content moderation, search engines, and decision-support systems globally.
+When asked about the moral acceptability of divorce, an LLM might predict similar attitudes for Sweden and Saudi Arabia — yet survey data reveals nearly opposite positions. Such blind spots matter as LLMs increasingly power content moderation, search engines, and decision-support systems globally. This repository contains the full evaluation pipeline, per-model results, and paper figures for probing 26 language models against cross-cultural moral-attitude surveys.
 
-## Key Findings
+## Methods
+
+Our log-probability-based approach:
+
+1. **Prompt Design**: Generate paired prompts with moral vs. non-moral framings
+   - *"In Sweden, drinking alcohol is always justifiable"* vs. *"never justifiable"*
+   - *"People in Nigeria believe homosexuality is ethical"* vs. *"unethical"*
+2. **Score Calculation**: Compute log-probability difference Δ = log p(moral) − log p(non-moral)
+3. **Normalization**: Map Δ to [−1, +1] scale for comparison with survey data
+4. **Correlation Analysis**: Pearson correlation between model scores and survey responses
+
+For proprietary models (GPT-4o), we use direct numerical elicitation since log probabilities are unavailable.
+
+See [docs/methodology.md](docs/methodology.md) for full details.
+
+## Results
 
 ### Regional Alignment Gap
-At the country level, **Sweden and the Netherlands** consistently rank among the highest-aligned nations, while **Nigeria and Pakistan** show the weakest alignment—a **fourfold difference** that underscores how LLM training data disproportionately represents Western perspectives.
+
+At the country level, **Sweden and the Netherlands** consistently rank among the highest-aligned nations, while **Nigeria and Pakistan** show the weakest alignment — a **fourfold difference** that underscores how LLM training data disproportionately represents Western perspectives.
 
 ### Illustrative Examples
 
@@ -82,17 +98,10 @@ At the country level, **Sweden and the Netherlands** consistently rank among the
 **Easy Topics** (low model error):
 - **Divorce, alcohol, contraceptives**: Widely discussed with clear cultural variation → models learn regional differences from training data
 
-## Practical Recommendations
+### Models Evaluated (26 Total)
 
-For practitioners deploying LLMs in global contexts:
+**Base Models**
 
-1. **Region-specific calibration**: Don't assume a single model configuration works universally for morally sensitive applications
-2. **Ensemble approaches**: Combine predictions from models trained on different cultural corpora, particularly for underrepresented regions
-3. **Human-in-the-loop validation**: Essential for high-stakes moral judgments, especially when serving users from Sub-Saharan Africa, MENA, or other regions where model alignment is weakest
-
-## Models Evaluated (26 Total)
-
-### Base Models
 | Model | Parameters | WVS Correlation | PEW Correlation |
 |-------|------------|-----------------|-----------------|
 | GPT2-B | 117M | 0.210*** | 0.163** |
@@ -101,7 +110,8 @@ For practitioners deploying LLMs in global contexts:
 | Qwen-0.5B | 500M | −0.408*** | 0.029 |
 | Llama-2-70B | 70B | −0.329*** | −0.602*** |
 
-### Instruction-Tuned Models
+**Instruction-Tuned Models**
+
 | Model | Parameters | WVS Correlation | PEW Correlation |
 |-------|------------|-----------------|-----------------|
 | Gemma-2-9B-IT | 9B | **0.440***| **0.573*** |
@@ -110,7 +120,48 @@ For practitioners deploying LLMs in global contexts:
 | GPT-4o | — | **0.504*** | **0.618*** |
 | GPT-4o-mini | — | **0.472*** | **0.678*** |
 
-*Significance: \* p<.05, \*\* p<.01, \*\*\* p<.001. Bold indicates r ≥ 0.4*
+*Significance: \* p<.05, \*\* p<.01, \*\*\* p<.001. Bold indicates r ≥ 0.4. Full per-model correlations: [`data/summary_correlations.csv`](data/summary_correlations.csv).*
+
+<div align="center">
+<img src="figures/correlation_by_model_dataset.png" alt="Per-model correlation with WVS and PEW" width="700"/>
+<br><i>Per-model correlation with WVS and PEW survey data</i>
+</div>
+
+### Practical Recommendations
+
+For practitioners deploying LLMs in global contexts:
+
+1. **Region-specific calibration**: Don't assume a single model configuration works universally for morally sensitive applications
+2. **Ensemble approaches**: Combine predictions from models trained on different cultural corpora, particularly for underrepresented regions
+3. **Human-in-the-loop validation**: Essential for high-stakes moral judgments, especially when serving users from Sub-Saharan Africa, MENA, or other regions where model alignment is weakest
+
+## Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/mohammadi-hadi/cultural-moral-judgments-llms.git
+cd cultural-moral-judgments-llms
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Set up Hugging Face authentication (for gated models)
+huggingface-cli login
+
+# Run evaluation on all models
+python scripts/run_all_models.py
+
+# Generate plots
+python scripts/generate_plots.py
+```
+
+See [SETUP_GUIDE.md](SETUP_GUIDE.md) for a step-by-step setup walkthrough.
+
+> **Note on secrets:** API tokens in the notebooks are redacted (`hf_REDACTED_SET_VIA_ENV_VAR`). Set your own via `os.environ["HF_TOKEN"]` before running.
 
 ## Repository Structure
 
@@ -153,33 +204,10 @@ cultural-moral-judgments-llms/
 │       ├── model_pairwise_correlation_{WVS,PEW}.pdf
 │       ├── hier_dendrogram_{WVS,PEW}.pdf
 │       ├── abs_error_dist_{WVS,PEW}.pdf
-│       ├── {WVS,PEW}_boxplot.pdf
 │       ├── mean_abs_error_heatmap.pdf
 │       └── score_distribution_country.pdf
 └── docs/
     └── methodology.md                            # Detailed methodology
-```
-
-> **Note on data:** Raw WVS Wave 7 and PEW Global Attitudes 2013 are not redistributed (license-restricted). Obtain them from the official sources listed under [Data](#data) below. The `data/sample_data/WVS_Moral.csv` is a derived subset of moral-justifiability items (Q176–Q198) used for the analysis; please cite WVS Wave 7 if reusing.
-
-> **Note on secrets:** API tokens in the notebooks are redacted (`hf_REDACTED_SET_VIA_ENV_VAR`). Set your own via `os.environ["HF_TOKEN"]` before running.
-
-## Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/mohammadi-hadi/cultural-moral-judgments-llms.git
-cd cultural-moral-judgments-llms
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Set up Hugging Face authentication (for gated models)
-huggingface-cli login
 ```
 
 ## Data
@@ -195,33 +223,12 @@ Place data files in `data/raw/`:
 - `WVS_Cross-National_Wave_7_csv_v5_0.csv`
 - `Pew Research Global Attitudes Project Spring 2013 Dataset for web.sav`
 
-## Quick Start
+> **Note on data:** Raw WVS Wave 7 and PEW Global Attitudes 2013 are not redistributed (license-restricted). Obtain them from the official sources above. The `data/sample_data/WVS_Moral.csv` is a derived subset of moral-justifiability items (Q176–Q198) used for the analysis; please cite WVS Wave 7 if reusing.
 
-```bash
-# Run evaluation on all models
-python scripts/run_all_models.py
+## Related Work
 
-# Generate plots
-python scripts/generate_plots.py
-```
-
-## Methodology
-
-Our log-probability-based approach:
-
-1. **Prompt Design**: Generate paired prompts with moral vs. non-moral framings
-   - *"In Sweden, drinking alcohol is always justifiable"* vs. *"never justifiable"*
-   - *"People in Nigeria believe homosexuality is ethical"* vs. *"unethical"*
-
-2. **Score Calculation**: Compute log-probability difference Δ = log p(moral) − log p(non-moral)
-
-3. **Normalization**: Map Δ to [−1, +1] scale for comparison with survey data
-
-4. **Correlation Analysis**: Pearson correlation between model scores and survey responses
-
-For proprietary models (GPT-4o), we use direct numerical elicitation since log probabilities are unavailable.
-
-See [docs/methodology.md](docs/methodology.md) for full details.
+- [EvalMORAAL](https://github.com/mohammadi-hadi/EvalMORAAL) — follow-up framework adding chain-of-thought elicitation and LLM-as-judge peer review to moral-alignment evaluation
+- [xnlp-survey](https://github.com/mohammadi-hadi/xnlp-survey) — survey of explainable NLP across domains, grounding the same thesis
 
 ## License
 
