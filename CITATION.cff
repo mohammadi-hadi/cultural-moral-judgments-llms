@@ -43,7 +43,10 @@ preferred-citation:
   title: "Exploring Cultural Variations in Moral Judgments with Large Language Models"
   year: 2026
   journal: "Computational Linguistics in the Netherlands Journal"
-  url: "https://arxiv.org/abs/2506.12433"
+  volume: 15
+  start: 59
+  end: 77
+  url: "https://clinjournal.org/clinj/article/view/238"
   authors:
     - given-names: "Hadi"
       orcid: "https://orcid.org/0000-0003-0860-9200"
