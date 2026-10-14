@@ -17,7 +17,7 @@
 | **Title**        | Exploring Cultural Variations in Moral Judgments with Large Language Models |
 | **Authors**      | Hadi Mohammadi, Robert A. Bagheri |
 | **Affiliation**  | Utrecht University, The Netherlands |
-| **Venue**        | Computational Linguistics in the Netherlands Journal (in press) |
+| **Venue**        | Computational Linguistics in the Netherlands Journal, Vol. 15 (2026), pp. 59–77 · [clinjournal.org/clinj/article/view/238](https://clinjournal.org/clinj/article/view/238) |
 | **arXiv**        | [2506.12433](https://arxiv.org/abs/2506.12433) |
 | **Code archive** | [10.5281/zenodo.20091842](https://doi.org/10.5281/zenodo.20091842) (this repository, snapshot v1.0-thesis) |
 
