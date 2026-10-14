@@ -38,9 +38,11 @@ If you use this code or data, please cite **both** the paper and this code archi
   author        = {Mohammadi, Hadi and Bagheri, Robert A.},
   year          = {2026},
   journal       = {Computational Linguistics in the Netherlands Journal},
+  volume        = {15},
+  pages         = {59--77},
   eprint        = {2506.12433},
   archivePrefix = {arXiv},
-  url           = {https://arxiv.org/abs/2506.12433}
+  url           = {https://clinjournal.org/clinj/article/view/238}
 }
 
 @software{mohammadi_cultural_moral_judgments_llms_2026,
